@@ -345,6 +345,18 @@ function bestMove(player, cpu, rem) {
   if (player.includes(9) && rem.includes(1)) {
     return 1;
   }
+  if (player.includes(2) && player.includes(4) && rem.includes(1)) {
+    return 1;
+  }
+  if (player.includes(2) && player.includes(6) && rem.includes(3)) {
+    return 3;
+  }
+  if (player.includes(4) && player.includes(8) && rem.includes(7)) {
+    return 7;
+  }
+  if (player.includes(6) && player.includes(8) && rem.includes(9)) {
+    return 9;
+  }
   if (rem.includes(1)) {
     return 1;
   }
