@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Genos", sans-serif;
+}
+
+body {
+  background-color: #192a32;
+}
+
+.bi-circle {
+  width: 20px;
+  height: 20px;
+}
+
+.bi-x {
+  width: 35px;
+  height: 35px;
+}
+
+button {
+  border-radius: 10px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#menu {
+  background-color: #192a32;
+  width: 350px;
+}
+#onePlayerButton,
+#twoPlayersButton {
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
+
+.row {
+  margin-top: 10px;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0;
+}
+.row-1,
+.row-2,
+.row-3 {
+  height: 80px;
+}
+.col {
+  text-align: center;
+  padding: 0;
+  border-radius: 10px;
+  width: 80px;
+}
+.box {
+  width: 240px;
+}
+.cell {
+  width: 80px;
+  background-color: #1f3540;
+  height: 80px;
+  border: none;
+}
+#reset {
+  width: 40px;
+  height: 40px;
+}
+.bi-arrow-clockwise {
+  width: 30px;
+  height: 30px;
+}
+
+#twoInputs {
+  width: 450px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 576px) {
+  #twoInputs {
+    width: 200px;
+    display: block;
+  }
+}
