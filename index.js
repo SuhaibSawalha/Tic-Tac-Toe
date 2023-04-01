@@ -244,6 +244,7 @@ function put(index) {
 }
 
 function bestMove(player, cpu, rem) {
+  console.log(player);
   for (let i = 0; i < rem.length; ++i) {
     cpu.push(rem[i]);
     if (checkWinner(cpu)) {
@@ -257,9 +258,6 @@ function bestMove(player, cpu, rem) {
       return player.pop();
     }
     player.pop();
-  }
-  if (rem.includes(5)) {
-    return 5;
   }
   if (
     cpu.includes(5) &&
@@ -356,6 +354,22 @@ function bestMove(player, cpu, rem) {
   }
   if (player.includes(6) && player.includes(8) && rem.includes(9)) {
     return 9;
+  }
+  if (player.length == 1 && cpu.length == 0) {
+    if (
+      player.includes(1) ||
+      player.includes(3) ||
+      player.includes(7) ||
+      player.includes(9)
+    ) {
+      if (player.includes(1)) {
+        return 3;
+      }
+      return 1;
+    }
+  }
+  if (rem.includes(5)) {
+    return 5;
   }
   if (rem.includes(1)) {
     return 1;
