@@ -72,30 +72,78 @@ function checkWinner(array) {
   }
 }
 
-function winningMoves(array) {
+function winningMoves(array, rem) {
   let cnt = 0;
-  if (array.includes(1) && array.includes(2) && array.includes(3)) {
+  if (rem.includes(1) && array.includes(2) && array.includes(3)) {
     ++cnt;
   }
-  if (array.includes(4) && array.includes(5) && array.includes(6)) {
+  if (array.includes(1) && rem.includes(2) && array.includes(3)) {
     ++cnt;
   }
-  if (array.includes(7) && array.includes(8) && array.includes(9)) {
+  if (array.includes(1) && array.includes(2) && rem.includes(3)) {
     ++cnt;
   }
-  if (array.includes(1) && array.includes(4) && array.includes(7)) {
+  if (rem.includes(4) && array.includes(5) && array.includes(6)) {
     ++cnt;
   }
-  if (array.includes(2) && array.includes(5) && array.includes(8)) {
+  if (array.includes(4) && rem.includes(5) && array.includes(6)) {
     ++cnt;
   }
-  if (array.includes(3) && array.includes(6) && array.includes(9)) {
+  if (array.includes(4) && array.includes(5) && rem.includes(6)) {
     ++cnt;
   }
-  if (array.includes(1) && array.includes(5) && array.includes(9)) {
+  if (rem.includes(7) && array.includes(8) && array.includes(9)) {
     ++cnt;
   }
-  if (array.includes(3) && array.includes(5) && array.includes(7)) {
+  if (array.includes(7) && rem.includes(8) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(7) && array.includes(8) && rem.includes(9)) {
+    ++cnt;
+  }
+  if (rem.includes(1) && array.includes(4) && array.includes(7)) {
+    ++cnt;
+  }
+  if (array.includes(1) && rem.includes(4) && array.includes(7)) {
+    ++cnt;
+  }
+  if (array.includes(1) && array.includes(4) && rem.includes(7)) {
+    ++cnt;
+  }
+  if (rem.includes(2) && array.includes(5) && array.includes(8)) {
+    ++cnt;
+  }
+  if (array.includes(2) && rem.includes(5) && array.includes(8)) {
+    ++cnt;
+  }
+  if (array.includes(2) && array.includes(5) && rem.includes(8)) {
+    ++cnt;
+  }
+  if (rem.includes(3) && array.includes(6) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(3) && rem.includes(6) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(3) && array.includes(6) && rem.includes(9)) {
+    ++cnt;
+  }
+  if (rem.includes(1) && array.includes(5) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(1) && rem.includes(5) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(1) && array.includes(5) && rem.includes(9)) {
+    ++cnt;
+  }
+  if (rem.includes(3) && array.includes(5) && array.includes(7)) {
+    ++cnt;
+  }
+  if (array.includes(3) && rem.includes(5) && array.includes(7)) {
+    ++cnt;
+  }
+  if (array.includes(3) && array.includes(5) && rem.includes(7)) {
     ++cnt;
   }
   return cnt;
@@ -289,7 +337,7 @@ function bestMove(player, cpu, rem) {
   }
   for (let i = 0; i < rem.length; ++i) {
     cpu.push(rem[i]);
-    if (winningMoves(cpu) > 1) {
+    if (winningMoves(cpu, rem) > 1) {
       return cpu.pop();
     }
     cpu.pop();
