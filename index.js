@@ -320,6 +320,8 @@ function put(index) {
   onePlayer(remainingMoves.length == 0);
 }
 
+let firstCell,
+  corners = [1, 3, 7, 9];
 function bestMove(player, cpu, rem) {
   for (let i = 0; i < rem.length; ++i) {
     cpu.push(rem[i]);
@@ -432,7 +434,8 @@ function bestMove(player, cpu, rem) {
     return 2;
   }
   if (rem.length == 9) {
-    return 1;
+    firstCell = corners[Math.floor(Math.random() * 4)];
+    return firstCell;
   }
   if (rem.length == 7) {
     if (
@@ -443,14 +446,46 @@ function bestMove(player, cpu, rem) {
     ) {
       return 5;
     }
-    if (player.includes(3) || player.includes(7)) {
-      return 9;
-    }
-    if (player.includes(9)) {
-      return 3;
-    }
-    if (player.includes(5)) {
-      return 9;
+    if (firstCell == 1) {
+      if (player.includes(3) || player.includes(7)) {
+        return 9;
+      }
+      if (player.includes(9)) {
+        return 3;
+      }
+      if (player.includes(5)) {
+        return 9;
+      }
+    } else if (firstCell == 3) {
+      if (player.includes(1) || player.includes(9)) {
+        return 7;
+      }
+      if (player.includes(7)) {
+        return 1;
+      }
+      if (player.includes(5)) {
+        return 7;
+      }
+    } else if (firstCell == 7) {
+      if (player.includes(1) || player.includes(9)) {
+        return 3;
+      }
+      if (player.includes(3)) {
+        return 1;
+      }
+      if (player.includes(5)) {
+        return 3;
+      }
+    } else {
+      if (player.includes(3) || player.includes(7)) {
+        return 1;
+      }
+      if (player.includes(1)) {
+        return 3;
+      }
+      if (player.includes(5)) {
+        return 1;
+      }
     }
   }
   if (player.includes(2) && player.includes(4) && rem.includes(1)) {
