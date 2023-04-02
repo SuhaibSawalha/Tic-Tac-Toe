@@ -72,6 +72,35 @@ function checkWinner(array) {
   }
 }
 
+function winningMoves(array) {
+  let cnt = 0;
+  if (array.includes(1) && array.includes(2) && array.includes(3)) {
+    ++cnt;
+  }
+  if (array.includes(4) && array.includes(5) && array.includes(6)) {
+    ++cnt;
+  }
+  if (array.includes(7) && array.includes(8) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(1) && array.includes(4) && array.includes(7)) {
+    ++cnt;
+  }
+  if (array.includes(2) && array.includes(5) && array.includes(8)) {
+    ++cnt;
+  }
+  if (array.includes(3) && array.includes(6) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(1) && array.includes(5) && array.includes(9)) {
+    ++cnt;
+  }
+  if (array.includes(3) && array.includes(5) && array.includes(7)) {
+    ++cnt;
+  }
+  return cnt;
+}
+
 function onePlayer(itsAtie) {
   const playerScore = check("playerScore", 0);
   const ties = check("ties", 0);
@@ -244,7 +273,6 @@ function put(index) {
 }
 
 function bestMove(player, cpu, rem) {
-  console.log(player);
   for (let i = 0; i < rem.length; ++i) {
     cpu.push(rem[i]);
     if (checkWinner(cpu)) {
@@ -258,6 +286,13 @@ function bestMove(player, cpu, rem) {
       return player.pop();
     }
     player.pop();
+  }
+  for (let i = 0; i < rem.length; ++i) {
+    cpu.push(rem[i]);
+    if (winningMoves(cpu) > 1) {
+      return cpu.pop();
+    }
+    cpu.pop();
   }
   if (
     cpu.includes(5) &&
@@ -331,17 +366,44 @@ function bestMove(player, cpu, rem) {
   ) {
     return 9;
   }
-  if (player.includes(1) && rem.includes(9)) {
-    return 9;
+  if (
+    rem.length == 8 &&
+    (player.includes(1) ||
+      player.includes(3) ||
+      player.includes(7) ||
+      player.includes(9))
+  ) {
+    return 5;
   }
-  if (player.includes(3) && rem.includes(7)) {
-    return 7;
+  if (
+    rem.length == 6 &&
+    cpu.includes(5) &&
+    ((player.includes(1) && player.includes(9)) ||
+      (player.includes(3) && player.includes(7)))
+  ) {
+    return 2;
   }
-  if (player.includes(7) && rem.includes(3)) {
-    return 3;
-  }
-  if (player.includes(9) && rem.includes(1)) {
+  if (rem.length == 9) {
     return 1;
+  }
+  if (rem.length == 7) {
+    if (
+      player.includes(2) ||
+      player.includes(4) ||
+      player.includes(6) ||
+      player.includes(8)
+    ) {
+      return 5;
+    }
+    if (player.includes(3) || player.includes(7)) {
+      return 9;
+    }
+    if (player.includes(9)) {
+      return 3;
+    }
+    if (player.includes(5)) {
+      return 9;
+    }
   }
   if (player.includes(2) && player.includes(4) && rem.includes(1)) {
     return 1;
@@ -354,19 +416,6 @@ function bestMove(player, cpu, rem) {
   }
   if (player.includes(6) && player.includes(8) && rem.includes(9)) {
     return 9;
-  }
-  if (player.length == 1 && cpu.length == 0) {
-    if (
-      player.includes(1) ||
-      player.includes(3) ||
-      player.includes(7) ||
-      player.includes(9)
-    ) {
-      if (player.includes(1)) {
-        return 3;
-      }
-      return 1;
-    }
   }
   if (rem.includes(5)) {
     return 5;
@@ -444,7 +493,6 @@ function onePlayerInput() {
 }
 
 function twoPlayersInput() {
-  console.log("f");
   window.open("inputTwoPlayers.html", "_self");
 }
 function twoPlayersMode() {
