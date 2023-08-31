@@ -194,26 +194,30 @@ function onePlayer(itsAtie) {
     cell.innerHTML = player1;
     cell.disabled = true;
     cell.style.opacity = 1;
+    cell.onmouseenter = () => {};
+    cell.onmouseleave = () => {};
   });
   cpuMoves.forEach((i) => {
     const cell = document.getElementById(`cell-${i}`);
     cell.innerHTML = player2;
     cell.disabled = true;
     cell.style.opacity = 1;
+    cell.onmouseenter = () => {};
+    cell.onmouseleave = () => {};
   });
   remainingMoves.forEach((i) => {
     const cell = document.getElementById(`cell-${i}`);
     cell.innerHTML = ``;
     cell.style.opacity = 1;
     cell.disabled = false;
-    cell.addEventListener("mouseenter", (event) => {
+    cell.onmouseenter = () => {
       document.getElementById(`cell-${i}`).innerHTML = player1;
       document.getElementById(`cell-${i}`).style.opacity = 0.2;
-    });
-    cell.addEventListener("mouseleave", (event) => {
+    };
+    cell.onmouseleave = () => {
       document.getElementById(`cell-${i}`).innerHTML = ``;
       document.getElementById(`cell-${i}`).style.opacity = 1;
-    });
+    };
   });
   if (checkWinner(playerMoves)) {
     playerOne(checkWinner(playerMoves), games % 2, "playerScore");
@@ -677,27 +681,30 @@ function twoPlayers(itsAtie) {
     cell.innerHTML = player1;
     cell.disabled = true;
     cell.style.opacity = 1;
+    cell.onmouseenter = () => {};
+    cell.onmouseleave = () => {};
   });
   secondPlayerMoves.forEach((i) => {
     const cell = document.getElementById(`cell-${i}`);
     cell.innerHTML = player2;
     cell.disabled = true;
     cell.style.opacity = 1;
+    cell.onmouseenter = () => {};
+    cell.onmouseleave = () => {};
   });
   remainingMoves.forEach((i) => {
     const cell = document.getElementById(`cell-${i}`);
     cell.innerHTML = ``;
     cell.style.opacity = 1;
     cell.disabled = false;
-    cell.addEventListener("mouseenter", (event) => {
-      document.getElementById(`cell-${i}`).innerHTML =
-        remainingMoves.length % 2 == 1 ? player1Default : player2Default;
+    cell.onmouseenter = () => {
+      document.getElementById(`cell-${i}`).innerHTML = player1;
       document.getElementById(`cell-${i}`).style.opacity = 0.2;
-    });
-    cell.addEventListener("mouseleave", (event) => {
+    };
+    cell.onmouseleave = () => {
       document.getElementById(`cell-${i}`).innerHTML = ``;
       document.getElementById(`cell-${i}`).style.opacity = 1;
-    });
+    };
   });
   if (checkWinner(firstPlayerMoves)) {
     playerOne(checkWinner(firstPlayerMoves), games % 2, "firstPlayerScore");
