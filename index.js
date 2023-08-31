@@ -149,6 +149,14 @@ function winningMoves(array, rem) {
   return cnt;
 }
 
+function removeHover() {
+  for (let i = 1; i < 10; ++i) {
+    const cell = document.getElementById(`cell-${i}`);
+    cell.onmouseenter = () => {};
+    cell.onmouseleave = () => {};
+  }
+}
+
 function onePlayer(itsAtie) {
   const playerScore = check("playerScore", 0);
   const ties = check("ties", 0);
@@ -272,11 +280,13 @@ function Clear(winner, array, games) {
 }
 
 function Tie() {
+  removeHover();
   localStorage.setItem("ties", Number(check("ties", 0)) + 1);
   Clear(`IT'S A TIE!`, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2);
 }
 
 function playerOne(array, games, score) {
+  removeHover();
   localStorage.setItem(score, Number(check(score, 0)) + 1);
   Clear(
     gameOnProgress == 1
@@ -288,6 +298,7 @@ function playerOne(array, games, score) {
 }
 
 function playerTwo(array, games, score) {
+  removeHover();
   localStorage.setItem(score, Number(check(score, 0)) + 1);
   Clear(
     gameOnProgress == 1
@@ -698,7 +709,8 @@ function twoPlayers(itsAtie) {
     cell.style.opacity = 1;
     cell.disabled = false;
     cell.onmouseenter = () => {
-      document.getElementById(`cell-${i}`).innerHTML = player1;
+      document.getElementById(`cell-${i}`).innerHTML =
+        remainingMoves.length % 2 == 1 ? player1Default : player2Default;
       document.getElementById(`cell-${i}`).style.opacity = 0.2;
     };
     cell.onmouseleave = () => {
